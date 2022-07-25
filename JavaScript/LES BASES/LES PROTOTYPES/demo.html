@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <script>
+        /*let eleve = {
+            moyenne: function () {
+                let somme = 0
+                for (let i = 0; i < this.notes.length; i++) {
+                    somme += this.notes[i]
+                }
+                return somme / this.notes.length
+            },
+            present: function () {
+                console.log(this.nom + " présent");
+            }
+        }
+        let jean = {
+            nom: 'Jean',
+            notes: [10, 20]
+        }
+        jean.__proto__ = Eleve // On change le prototype
+        jean.moyenne() // 11, La méthode moyenne est disponible sur le prototype et peut donc être appelée
+
+        let marc = {
+            nom: 'Marc',
+            notes: [20, 20]
+        }*/
+
+        // C'est la manière non officiel qu'on utilise jamais Lorsque l'on souhaite créer un objet on pourra utiliser la méthode create() sur l'objet Object. Ainsi le code écrit au dessus peut être simplifié :
+
+        /*
+        Petit point de terminologie :
+                - Jean & Marc sont des instances
+                - Eleve est une classe mais en Javascript on dit que ce sont des Object
+                Donc, Jean & Marc sont des instances de l'object Eleve. Globalement ils héritent
+                des methodes d'Eleve mais peuvent aussi avoir des propriétés qui leurs sont propre
+        */
+
+        // LE CONSTRUCTEUR:
+
+        // La fonction sera utilisée pour "construire" un objet
+        let Eleve = function (nom, notes) {
+            if (notes != undefined) {
+                this.notes = notes
+            }
+            this.nom = nom // On ajoutera une propriété "nom" 
+        }
+        // Si on souhaite créer une méthode moyenne disponible pour tous les élèves on pourra faire :
+        Eleve.prototype.moyenne = function () {
+            if (this.notes === undefined) {
+                return NaN
+            }
+            let somme = 0
+            for (let i = 0; i < this.notes.length; i++) {
+                somme += this.notes[i]
+            }
+            return somme / this.notes.length
+        }
+
+        let jean = new Eleve('Jean', [10, 15]) // On crée une nouvelle "instance" de l'objet Eleve
+        let marc = new Eleve('Marc')
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

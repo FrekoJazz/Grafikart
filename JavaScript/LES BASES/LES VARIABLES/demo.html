@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Les variables</title>
+</head>
+
+<body>
+
+
+    <script>
+
+        //ECRITURE:
+
+        /* Une variable peut être déclarée à l'aide du mot clef let et ne doivent pas contenir de caractères spéciaux à l'exception des _ .*/
+
+        let a1 = 2
+        let une_variable_plus_longue = "Ma super chaine"
+
+        /*Contrairement à d'autres langages de programmation il n'est pas nécessaire de mettre un ; à la fin des lignes en JavaScript (mais si vous voulez, vous pouvez ^^). 
+        L'interpréteur (ce qui va faire fonctionner notre code) va automatiquement détecter les fins de lignes et comprendre quand arréter une instruction.
+        
+        Enfin, une variable peut changer de valeur et de type au cours de l'éxécution de notre algorithme.*/
+
+        let a2 = 2
+        a2 = "Je suis une chaine maintenant !"
+
+
+        //LES TYPES DE VARIABLE:
+
+        /*Il est possible de stocker différents types d'information dans une variable.*/
+
+        //Les nombres:
+
+        let a3 = 2
+        let b1 = 3.4123
+        let c = -509
+        let d = 1 / 3
+
+        /*Attention dans le cas des réels, on utilise un . pour marquer la partie décimale.*/
+
+        //LES CHAINES DE CARACTERE:
+
+        /*Les chaines de caractères permettent de stocker des mots / phrases. On les entoure de ' ou de " */
+
+        let a4 = "Salut les gens"
+        let b2 = 'Re-Salut les gens'
+
+        /*Il n'y a pas de réel différence entre les simples et doubles quotes sauf si notre chaine de caractère contient des ' ou "*/
+
+        let a5 = "Ceci n'est pas poblématique"
+        let b3 = 'Ceci n\'est pas problématique'
+
+        //LES BOOLEENS:
+
+        /*Les booléens permettent de stocker une information qui sera soit vraie soit fausse*/
+
+        let vrai = true
+        let je_suis_faux = false
+
+        //TABLEAUX:
+
+        /*Les tableaux permettent de stocker une liste d'information. Cette liste peut contenir n'importe quel autre type de variable (un tableau peut même contenir un autre tableau).*/
+
+        let eleves = ['Jean', 'Marc', 'Marion']
+        let demo = [true, 10, 'Marc']
+
+        /*Ensuite il est possible de récupérer un élément dans un tableau en utilisant la notation [i] où i est un nombre représentant l'index de l'élément à récupérer (cet index commence par 0)*/
+
+        eleves[0] // Jean
+        eleves[2] // Marion
+        demo[1] // 10
+        demo[18] // undefined
+
+        //LES OBJETS:
+
+        /*Les objets permettent de stocker des informations plus complexes qu'une simple liste. Pour le moment, vous pouvez imaginer les objets comme une liste avec des index nommés.*/
+
+        let eleve = {
+            clef: 'valeur',
+            nom: 'Jean',
+            age: 18,
+            notes: [10, 4, 18]
+        }
+
+        /*Dans un objet les "clefs" sont appellés des propriétés. Pour récupérer une valeur associée à une propriété il y a 2 notations possibles.*/
+
+        eleve.nom // Jean
+        eleve.notes // [10, 4, 18]
+        eleve.notes[1] // 4
+        // On peut aussi utiliser une notation proche de celle des tableaux
+        eleve['notes'] // [10, 4, 18]
+
+        /*De la même manière, les objets peuvent contenir des objets en valeur.*/
+
+        let Eleve = {
+            notes: {
+                math: 18,
+                francais: 14
+            }
+        }
+        // Pour récupérer la note de math de l'élève on peut alors faire
+        Eleve.notes.math // 18
+        Eleves.nom // undefined
+
+        //TYPES SPECIAUX:
+
+        /*Enfin, lors de votre découverte du javascript vous allez rencontrer certaines variables qui correspondent à certains cas spécifiques*/
+
+        undefined // quand on essaie d'accéder à une variable ou valeur inexistante
+        null // représente l'absence intentionnelle de toute valeur
+        NaN // 'not a number'
+
+        //TYPAGE FAIBLE:
+
+        /*En javascript le typage est faible, suivant les opérations, les variables peuvent changer implicitement de type.*/
+
+        let a = '1'
+        let b = 1
+        console.log(a + b);
+        // b est convertit en chaine de caractère implicitement
+        console.log(a * b);
+        // a est convertit en nombre de manière implicite 
+        "Salut" * 3 // NaN, Not a number
+        // Attention aux opérations qui n'ont pas de sens :)
+        "43" > 1000 // false, 1000 est convertit en chaine implicitement et il compare l'ordre alphabétique
+
+        /*De manière générale on essaiera tant que possible de ne pas se reposer sur cette conversion implicite. Elle est plus souvent source de problèmes qu'autre chose.*/
+    </script>
+</body>
+
+</html>

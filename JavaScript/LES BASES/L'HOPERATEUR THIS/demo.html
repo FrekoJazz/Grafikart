@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+
+    <script>
+
+        const eleve = {
+            nom: "Jean",
+            appeler: function () {
+                console.log(this);
+            }
+        }
+
+        eleve.appeler()
+
+        /*
+        -this prend comme valeur l'objet global par défaut
+        -Si une méthode est appellée depuis un objet, this prendra comme valeur l'objet
+        -On peut appeller une méthode en changeant la valeur de this gràce à la méthode call()
+        -Si on ne veut pas redefinir this dans une fonction en ajoutant une nouvelle fonction a celle deja existante on utilise les fonctions =>
+        */
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>

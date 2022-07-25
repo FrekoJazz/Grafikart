@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Les boucles</title>
+</head>
+
+<body>
+
+
+    <script>
+
+        //LA BOUCLE WHILE:
+
+        /*La boucle while permet d'exécuter un code tant que la condition passée en paramètre n'est pas satisfaite*/
+
+        while (conditionQueLonVeut) {
+            // ....
+        }
+
+        /*Il faudra faire attention avec l'utilisation de cette boucle à ce que la condition devienne fausse à un moment donné au risque de voir la boucle se dérouler de manière infinie.
+        Si on le souhaite, il existe aussi la boucle until qui permet de faire la même chose sauf que la condition d'arrêt est inversée.*/
+
+        var i = 0
+        while (i < 3) {
+            "Je compte " + i
+            i = i + 1 // peut aussi s'écrire i++
+        }
+
+        /*Il est possible de forcer la sortie de la boucle à l'aide du mot clef break*/
+
+        var i = 0
+        while (i < 3) {
+            "Je compte " + i
+            if (i == 1) {
+                break
+            }
+            i++
+        }
+
+        //LA BOUCLE FOR:
+
+        /*La boucle for permet d'exécuter un code un certain nombre de fois en précisant manuellement l'intervalle pour lequel on souhaite faire la boucle. Elle présente une notation plus concise que le while :*/
+
+        var i = 0
+        for (var i = 0; i < 3; i++) {
+            "Je compte " + i
+        }
+
+        /*Cette boucle s'avèrera très utile lorsqu'il s'agira de parcourir un tableau*/
+
+        var eleves = ['Jean', 'Marc', 'Marie']
+        for (var i = 0; i < eleves.length; i++) {
+            eleve[i] // vaudra alternativement : Jean, Marc, Marie
+        }
+
+    </script>
+</body>
+
+</html>
