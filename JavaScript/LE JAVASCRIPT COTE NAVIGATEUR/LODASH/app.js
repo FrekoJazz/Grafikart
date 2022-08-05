@@ -123,3 +123,50 @@ let user = users[0]
 console.log(_.size(user));/*lodash*/
 
 console.log(Object.keys(user).length);/*JSvanilla*/
+
+// quand on veut clonner un Object & changer un statut
+user = users[0]
+let user2 = _.clone(user)
+user2.age = user2.age * 3
+_.assign(user2, { active: true }) //remmplace active par n'importe qu'elle clef
+console.log(user2);
+
+// pour supprimer une clef d'un object
+user = users[0]
+user2 = _.assign({}, user, { user: { firstname: 'John', lastname: 'Doe' }, active: true, age: 2 })
+_.unset(user2, 'user.lastname')
+console.log(user2);
+
+// pour ajouter une clef d'un object
+user = users[0]
+user2 = _.assign({}, user, { user: {}, active: true, age: 2 })
+_.set(user2, 'user.firstname', 'Mino')
+console.log(user2);
+
+// pour tester une variable
+user2 = { user: { firstname: 'demo' }, active: true, age: 2 }
+if (_.get(user2, 'user.firstname', false) === 'demo') {
+    console.log('ok');
+}
+
+
+
+// EXEMPLE SUR DEBOUNCE & THROTTLE  (POUR LIMITER LES APPELS SUCCESSIFS)
+
+// pour debounce (appelle qu'une seule fois une méthode au début ou à la fin d'une succession de déclenchements d'un événement)
+window.addEventListener('scroll', _.debounce(function () {
+    console.log('Je scroll au debounce');
+}, 200))
+// pour throttle (appelle une méthode au début & la fin d'une succession de déclenchements d'un événement)
+window.addEventListener('scroll', _.throttle(function () {
+    console.log('Je scroll au throttle');
+}, 200))
+
+window.addEventListener('scroll', function () {
+    console.log('Je scroll sans rien');
+})
+
+
+
+// Pour ne pas utiliser toute la librairie de Lodash on peut l'installer avec npm dans le terminal (voir la doc https://lodash.com/) et aller chercher apres dans notre JS la function en particulier :
+// exp : let throttle = required('lodash/throttle)
