@@ -52,6 +52,8 @@
                 activeTab.removeEventListener('transitionend', transitionend)
             }
             activeTab.addEventListener('transitionend', transitionend)
+            activeTab.addEventListener('webkitTransitionEnd', transitionend)
+
         } else {
             aAfficher.classList.add('active')
             activeTab.classList.remove('active')
