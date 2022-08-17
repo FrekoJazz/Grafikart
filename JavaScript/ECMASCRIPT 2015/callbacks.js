@@ -7,7 +7,7 @@ let get = function (url, succes, error) {
     let xhr = new XMLHttpRequest()
 
     xhr.onreadystatechange = function () {
-        if (xhr.readystate === 4) {
+        if (xhr.readyState === 4) {
             if (xhr.status === 200) {
                 succes(xhr.responseText)
             } else {
