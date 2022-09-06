@@ -9,7 +9,7 @@ html {
 body {
     font-family: sans-serif;
     padding: 50px;
-    background: linear-gradient(45deg, #f37646, #f3e946) center center no-repeat;
+    background: linear-gradient(92deg, #44304B, #B9CFC0, #1095C0) center center no-repeat;
     line-height: 1.4;
 }
 
@@ -22,8 +22,8 @@ body {
 
 .item {
     margin: 40px 10px;
-    background-color: #fff;
-    box-shadow: 0px 15px 35px rgba(50, 50, 50, 0), 0px 5px 15px rgba(0, 0, 1, 0);
+    background-color: #eff0f3;
+    box-shadow: 0px 15px 35px rgba(50, 50, 50, 0.1), 0px 5px 15px rgba(0, 0, 1, 0.3);
     transition: transform 0.3s;
     transform: translate3d(0, -1px, 0);
 }
@@ -32,23 +32,84 @@ body {
     transform: translate3d(0, -10px, 0);
 }
 
+.item__image {
+    display: block;
+}
+
 .item__img {
     display: block;
     width: 100%;
     height: auto;
 }
 
+.item__body {
+    padding: 25px;
+}
+
 .item__title {
     font-size: 24px;
     margin-bottom: 5px;
     font-weight: bold;
-    color: #232323;
+    color: #0d0d0d;
 }
 
 .item__decription {
-    color: #585858;
+    color: #2a2a2a;
 }
 
 .items {
     position: relative;
+}
+
+/**
+CAROUSEL
+*/
+.carousel {
+    position: relative;
+}
+
+.carousel__container {
+    transition: transform 0.3s;
+    transform: translate(0, 0, 0);
+}
+
+.carousel__container::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.carousel__item {
+    float: left;
+}
+
+.carousel__next,
+.carousel__prev {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.39) url(right-arrow-next-svgrepo-com.svg) center center no-repeat;
+    background-size: 40px;
+    box-shadow: 0px 15px 35px rgba(50, 50, 50, 0.1), 0px 5px 15px rgba(0, 0, 1, 0.3);
+    border-radius: 50%;
+    top: 50%;
+    margin-top: -20px;
+    right: -20px;
+    cursor: pointer;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.carousel__next:hover,
+.carousel__prev:hover {
+    transform: scale(1.2);
+}
+
+.carousel__prev {
+    background-image: url(left-arrow-arrows-svgrepo-com.svg);
+    right: auto;
+    left: -20px;
+}
+
+.carousel__next--hidden {
+    opacity: 0;
 }
