@@ -110,6 +110,7 @@ CAROUSEL
     left: -20px;
 }
 
-.carousel__next--hidden {
+.carousel__next--hidden,
+.carousel__prev--hidden {
     opacity: 0;
 }
