@@ -5,108 +5,202 @@
     <meta charset="UTF-8">
     <script>
 
-        //let estPremier = function (nombre) {) autre ecriture
-        function estPremier(nombre) {
-            for (let i = 2; i < nombre; i++) {
-                if (nombre % 1 === 0) {
+        // IL EXSISTE DEUX MANIERE DE DECLARER DES FUNCTIONS
+
+        // SI ON VEUT UTILISER UNE FUNCTION GLOBALE A TOUS NOTRE SYSTEME :
+        function canDrive(age, pays) {
+            if (
+                (age >= 18 && pays === "FR") ||
+                (age >= 16 && pays === "US")
+            ) {
+                return true
+            }
+            return false
+        }
+
+        console.log(canDrive(19, "FR"))
+
+
+        // SI ON VEUT UTILISER UNE FUNCTION QUE DANS UNE BOUCLE OU QUE DANS UNE CONDITION :
+        const canDrives = function (age, pays) {
+            if (
+                (age >= 18 && pays === "FR") ||
+                (age >= 16 && pays === "US")
+            ) {
+                return true
+            }
+            return false
+        }
+
+        console.log(canDrives(19, "FR"))
+
+
+        //SYNTAXE
+
+        /* Les fonctions permettent de stocker en mémoire une certaine logique que l'on pourra utiliser à plusieurs reprises dans la suite de notre code.
+        Elles prennent en général des paramètres et retournent un résultat particulier. */
+
+        function saluer(nom) {
+            return "Salut " + nom
+        }
+        // On appelle ensuite notre fonction avec 
+        saluer('Marc') // Salut Marc
+
+        /* Les fonctions en JavaScript sont un type de variable particulier,
+        il est donc aussi possible de ne pas leur donner de nom, mais de les stocker dans une variable de manière classique.*/
+
+        const Saluer = function (nom) {
+            return "Salut " + nom
+        }
+
+        /*
+        * Si la fonction ne return rien à la fin de son exécution alors elle renverra automatiquement la valeur undefined.
+        * Si on appelle la fonction en omettant certains paramètres, ils prendront la valeur undefined. 
+        */
+
+        const demo = function (nom) {
+            return "Salut " + nom
+        }
+        demo() // nom aura la valeur undefined dans la fonction
+
+        /* On peut préciser une valeur par défaut à un paramètre en utilisant une assignation */
+
+        const demO = function (nom = 'John') {
+            return "Salut " + nom
+        }
+        demO() // nom aura la valeur "John" par défaut
+
+        // PORTEE DES FONCTIONS
+
+        /* Une fonction déclarée dans une variable aura la même portée que les variables (limité au bloc courant).
+        Par contre une fonction déclarée directement avec le mot clef function aura une portée plus globale :
+         */
+
+        if (true) {
+            function a() { console.log('a') }
+        }
+        a() // 'a' 
+
+        /* Aussi, l'hoisting fera qu'une fonction peut être appelée avant d'être déclarée */
+
+        a() // 'a' 
+        function a() { console.log('a') }
+
+        /* La portée est limitée si la fonction est déclarée dans une autre fonction */
+
+        function a() {
+            console.log('a')
+            function b() { console.log('b') }
+        }
+
+        a()
+        //b() // b is not defined
+
+        // THIS
+
+        /* L'opérateur this est un opérateur particulier que l'on peut utiliser dans une fonction.
+          La valeur de cet opérateur dépendra de la façon dont une fonction est appelée. */
+
+        function maFonction() {
+            console.log(this)
+        }
+
+        maFonction.call(3) // this aura la valeur 3
+        maFonction.call(4) // thiis aura la valeur 4
+
+        /* Si une fonction est déclarée sur un objet alors this aura la valeur de l'objet. */
+
+        const c = {
+            prop: 42,
+            func: function () {
+                return this.prop;
+            },
+        };
+
+        console.log(c.func()) // '42'
+
+        /* Mais on peut tout de même changer si on appelle la fonction avec call() ou apply(). */
+
+        // LES FONCTIONS FLECHEES
+
+        /* Les fonctions fléchées sont une syntaxe alternative (plus courte) pour les fonctions. */
+
+        const hello = (name) => {
+            console.log(`Bonjour ${name}`)
+        }
+
+        /* Ces fonctions ont comme particularité de ne pas posséder de valeur this */
+
+        const hellO = () => {
+            console.log(this)
+        }
+        hellO() // this sera l'objet global (window dans le cas du navigateur)
+        hellO.call(3) // this sera toujours l'objet global
+
+        /* Aussi, si il n'y a qu'une instruction de retour, on pourra simplifier l'appel en retirant les accolades.
+        On pourra aussi retirer les parenthèse si il n'y a qu'un paramètre. */
+
+        const double = (n) => {
+            return 2 * n
+        }
+        // On peut simplifier en retournant directement en retirant les accolades
+        const doublee = (n) => 2 * n
+        // Et on peut retirer les parenthèses
+        const doubleee = n => 2 * n
+
+        // EXERCICE :
+
+        // 1ER EXERCICE
+
+        /*  On crée un nombre aléatoire entre 0 et 10, ensuite on demandera à l'utilisateur de deviner ce nombre avec 3 essaies.
+            Pour créer la logique on utilisera des fonctions spécifiques
+                Une fonction isRight(n) qui renverra un booléen si l'utilisateur à la bonne réponse ou non
+                Une fonction guess() qui permet de faire un essaie, cette fonction renverra true ou false en fonction de la réponse donnée 
+        */
+
+        /* const solution = Math.floor(Math.random() * 11)
+        console.log(solution)
+
+        function isRight(n) {
+            return solution === n
+        }
+
+        function guess() {
+            const number = prompt("Entrer un nombre") * 1
+            return isRight(number)
+        }
+
+        for (i = 0; i < 3; i++) {
+            if (guess()) {
+                console.log("Bravo")
+                break
+            } else if (i === 2) {
+                console.log("Vous avez perdu")
+            }
+        } */
+
+        // 2IEME EXERCICE
+
+        // Un nombre premier est un nombre qui est divisible pas 1 ou par lui même
+        function isPremier(n) {
+            if (n < 2) {
+                return false
+            }
+            for (let i = n - 1; i > 1; i--) {
+                if (n % i === 0) {
                     return false
                 }
             }
             return true
         }
 
-        let pikachu = {
-            crier: function () {
-                console.log('PIKACHU');
-            }
-        }
+        console.log('0', isPremier(0)) // false
+        console.log('1', isPremier(1)) // false
+        console.log('2', isPremier(2)) // true
+        console.log('3', isPremier(3)) // true
+        console.log('11', isPremier(11)) // true
+        console.log('12', isPremier(12)) // false
 
-        function multiplie(a, b) {
-            if (b === undefined) {
-                b = 1
-            }
-            return a * b
-        }
-
-        let classeA = [{
-            nom: 'Marc',
-            moyenne: 15
-        }, {
-            nom: 'Marion',
-            moyenne: 8
-        }, {
-            nom: 'Antoine',
-            moyenne: 4
-        }]
-
-        let quiALaMoyenne = function (eleves) {
-            let moyenne = []
-            for (let i = 0; i < eleves.length; i++) {
-                let eleve = eleves[i]
-                if (eleve.moyenne >= 10) {
-                    moyenne.push(eleve)
-                }
-            }
-            return moyenne
-        }
-
-        console.log(quiALaMoyenne(classeA));
-
-        //function afficheQuiALaMoyenne(classeB)
-
-
-        //Exercice:
-
-        let phrase = "Dans la maniére les plus absolue. Toute chose est forcement ni bonne ni mauvaise. C'est l'homme qui dans un esprit critique a besoin de mettre une etiquette sur chaque chose."
-
-        let frequence = function (phrase) {
-            let mots = phrase.toLowerCase().split(" ")
-            let compteur = {}
-            for (let i = 0; i < mots.length; i++) {
-                let mot = mots[i]
-                if (compteur[mot] === undefined) {
-                    compteur[mot] = 1
-                } else {
-                    compteur[mot]++
-                }
-            }
-            return compteur
-        }
-
-
-        /*
-        ON SEPARE notre phrase GRACE AUX ESPACE (split)
-        ON CREE un compteur
-        POUR chaque mots
-            SI le mot est dans mon compteur (compteur[mot])
-                je l'incremente
-            SINON
-                je lui assigne la valeur
-        AFFICHE compteur            
-        */
-
-        let eleve1 = {
-            nom: 'Jean',
-            notes: [15, 16, 18, 2]
-        }
-        let eleve2 = {
-            nom: 'Jean',
-            notes: [12, 17, 11, 2]
-        }
-
-        let moyenne = function (notes) {
-            let somme = 0
-            for (let i = 0; i < notes.length; i++) {
-                somme = somme + notes[i]
-            }
-            return somme / notes.length
-        }
-
-        let estMeilleur = function (a, b) {
-            return moyenne(a.notes) > moyenne(b.notes)
-        }
-
-        console.log(estMeilleur(eleve1, eleve2));
     </script>
 </head>
 

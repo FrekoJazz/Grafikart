@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -7,8 +7,64 @@
 
 <body>
 
+    <script>
+        class Rectangle {
 
-    <script src="app.js"></script>
+            constructor(width, height) {
+                if (width <= 0 || height <= 0) {
+                    throw new Error("Impossible d'avoir une forme géomètrique avec des dimensions négatives")
+                }
+                this.width = width
+                this.height = height
+            }
+
+            get perimeter() {
+                return `${this.width * 2} + ${this.height * 2}`
+            }
+
+            get isValid() {
+                return this.width > 0 && this.height > 0
+            }
+
+            isBiggerThan(shape) {
+                return this.perimeter > shape.perimeter
+            }
+
+        }
+        class Square extends Rectangle {
+
+            constructor(width) {
+                super(width)
+            }
+        }
+
+        class PromptError extends Error {
+        }
+
+        function promptRectangle() {
+            const width = parseInt(prompt('Largeur'), 10)
+            const height = parseInt(prompt('Hauteur'), 10)
+            const r = new Rectangle(width, height)
+            return r
+        }
+
+        try {
+            promptRectangle()
+        } catch (e) {
+            if (e instanceof PromptError) {
+                console.log("promptError")
+            } else {
+                console.log("erreur classique")
+            }
+        }
+
+        promptRectangle()
+
+
+    </script>
+
+    // Pour revoir le cour de Grafikart : https://grafikart.fr/tutoriels/class-tp-2063
+
 </body>
 
 </html>

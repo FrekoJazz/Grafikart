@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        h1 {
+            display: flex;
+            justify-content: center;
+            font-size: 4rem;
+        }
+    </style>
+    <script>
+        /*
+        // TEXTE DU COURS
+        
+                    // CREER SON PROTOTYPE
+        
+                    // Vous pouvez aussi utiliser ce système de prototype pour vous créer des types de variables personnalisé.
+        
+                    // Structure de base
+        
+                    class Student {
+        
+                        // La propriété sera automatiquement placé sur l'objet lors de sa construction
+                        notes = []
+        
+                        // La méthode constructor permet d'indiquer comment le type sera construit
+                        constructor(firstname, lastname) {
+                            // this permettra d'accéder à l'objet construit
+                            this.firstname = firstname
+                            this.lastname = lastname
+                        }
+        
+                        // On peut ajouter des méthodes, this fera référence à l'objet sur lequel on utilisera la méthode
+                        addNote(note) {
+                            this.notes.push(note)
+                        }
+        
+                        // On peut créer des getters, ce sont des sortes de propriétées magiques qui ont une logique
+                        get fullname() {
+                            return `${this.firstname} ${this.lastname}`
+                        }
+        
+                        get moyenne() {
+                            let sum = 0
+                            for (let note of this.notes) {
+                                sum += note
+                            }
+                            return sum / this.notes.length
+                        }
+        
+                        // On peut aussi créer des setter pour ajouter de la logique
+                        set name(str) {
+                            const items = str.split(' ')
+                            this.firstname = items[0]
+                            this.lastname = items[1]
+                        }
+        
+                    }
+        
+                    // On peut ensuite utiliser ce prototype pour créer des objets qui auront les méthodes et propriétés requises.
+        
+                    const john = new Student('John', 'Doe')
+                    john.notes // []
+                    john.fullname // "John Doe"
+                    john.addNote(18)
+                    john.moyenne // 18
+                    john.name = 'Jane Doe'
+                    john.firstname = "Jane"
+        
+                    // PROPRIETE PRIVEES
+        
+                    // Vous pouvez définir une propriété privée qui ne sera pas accessible en dehors de la class
+        
+                    class Students {
+        
+                        #notes = []
+        
+                        get notes() {
+                            return this.#notes // On a le droit d'y accéder depuis la classe
+                        }
+        
+                    }
+                    const a = new StudentS()
+                    a.#notes // Private field '#notes' must be declared in an enclosing class
+                    a.notes // []
+        
+                    // HERITAGE
+        
+                    // Vous pouvez aussi créer une classe qui aura comme prototype un autre prototype à l'aide du mot clef extends.
+        
+                    class CheaterStudent extends Student {
+        
+                        set notes(note) {
+                            this.notes.push(20) // On "remplace" le setter parent, le tricheur aura toujours 20 !
+                        }
+        
+                    }
+        
+                    // Dans le cas d'un extends vous pouvez aussi appeler les méthodes parentes à l'aide du mot clef super. On pourra l'utiliser dans le constructeur ou n'importe qu'elle méthode.
+        
+                    class CheaterStudent extends Student {
+        
+                        addNote(note) {
+                            super.addNote(20)
+                        }
+        
+                    }
+        */
+
+
+
+        // VIDEO DU COUR
+
+        const moyenne = (notes) => {
+            let sum = 0
+            for (let note of notes) {
+                sum = sum + note
+            }
+            return sum / notes.length
+        }
+
+        class Student {
+            ecole = 'Jules ferry'
+            _notes = []
+
+            // On peut définir une variable interne = ça sera une variable qui ne sera pas exposé a l'extérieur et du coup non modifiable dans la console
+            #secret = 'Hello'
+
+            constructor(firstname, lastname) {
+                this.firstname = firstname
+                this.lastname = lastname
+            }
+
+            set notes(v) {
+                if (Array.isArray(v)) {
+                    this._notes = v
+                }
+            }
+
+            get name() {
+                return `${this.firstname} ${this.lastname} `
+            }
+
+            canPass() {
+                return moyenne(this._notes) >= student.moyenne // marche avec static moyenne
+            }
+
+            // (l'avantage avec cette formulation et de pouvoir changer la valeur plus facilement) On peut directement definir les methode avec :
+            static moyenne = 10
+
+        }
+
+        class SuperStudent extends Student {
+
+            // Un constructor a l'interieur d'une classe exetens permet de redefinir le constructor
+
+            constructor(firstname, lastname, notes) {
+                super(firstname, lastname)
+                this._notes = notes
+            }
+
+            get name() {
+                return 'super' + super.name // Avec super. on peut appeller une méthode du prototype parent
+            }
+
+            canPass() {
+                return true
+            }
+        }
+
+        const john = new SuperStudent('John', 'Doe', [0, 10, 8])
+        const jane = new Student('Jane', 'Doe')
+        jane.notes = [15, 18, 19]
+        console.log(john.canPass())
+        console.log(jane)
+
+        // Résumé de la vidéo: https://grafikart.fr/tutoriels/class-2061 à 27:50
+
+    </script>
+</head>
+
+<body>
+    <h1>NE LACHE RIEN !!!</h1>
+</body>
+
+</html>

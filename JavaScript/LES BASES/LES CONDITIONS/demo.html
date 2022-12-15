@@ -39,8 +39,16 @@
 
         console.log(marc.age >= 18 ? 'tu es majeur !' : 'tu es mineur')
 
-
-
+        const year = 2022
+        const birthyear = prompt("Quel est votre année de naissance ?")
+        const age = year - birthyear
+        if (age <= 13) {
+            console.log("Je vous propose Alice in the Wonderland")
+        } else if (age < 18) {
+            console.log("Je vous propose Matrix")
+        } else {
+            console.log("Je vous propose Evil Dead")
+        }
 
     </script>
 </head>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        h1 {
+            display: flex;
+            justify-content: center;
+            font-size: 4rem;
+        }
+    </style>
+    <script>
+
+        /*
+        - Creer une classe rectangle qui sera initialisé avec une largeur et une hauteur.
+        - sur cette classe créer un getter perimeter qui permet d'obtenir le perimetre de notre rectangle (2*L + 2*H)
+        - méthode isValid si notre forme géometrique est valide
+        */
+
+        /*
+        - Créer une forme d'héritag pour créer square, on utilisera le systéme d' extend pour reutiliser ce qu'on a fais dans les rectangle en changeant les dimensions.
+        */
+
+        // On fini par créer la methode isBiggerthan qui fonctionnera a la fois sur rectangle et sur les carée. l'objectif et de vérifier si la forme est plus grande ou plus petite (on compare les périmetre)
+
+        //EXERCICE 1
+
+        /*  class Rectangle {
+ 
+             constructor(Largeur, Hauteur) {
+                 this.Largeur = Largeur
+                 this.Hauteur = Hauteur
+             }
+ 
+             get perimeter() {
+                 return `${this.Largeur * 2} + ${this.Hauteur * 2}`
+             }
+ 
+             get isValid() {
+                 return this.Largeur > 0 && this.Hauteur > 0
+             }
+ 
+             isBiggerThan(shape) {
+                 return this.perimeter > shape.perimeter
+             }
+ 
+         }
+         class Square extends Rectangle {
+ 
+             constructor(Largeur) {
+                 super(Largeur)
+             }
+ 
+             get perimeter() {
+                 return (this.Largeur) * 4
+             }
+ 
+             get isValid() {
+                 return this.Largeur > 0
+             }
+ 
+         }
+ 
+         const r = new Rectangle(10, 20);
+         console.log(r.perimeter)
+         console.log(r.isValid)
+         const r2 = new Rectangle(-10, 20);
+         console.log(r2.isValid)
+         const c = new Square(10);
+         console.log(c.perimeter)
+         console.log(c.isValid)
+         console.log(c.isBiggerThan(r)) */
+
+        // EXERCICE 2
+
+        class Book {
+
+            #page = 1
+
+            constructor(title, pages) {
+                this.title = title
+                this.pages = pages
+            }
+
+            get page() {
+                return this.#page
+            }
+
+            nextPage() {
+                if (this.#page < this.pages) {
+                    this.#page++
+                }
+            }
+
+            close() {
+                return this.#page = 1
+            }
+
+        }
+
+        class Library {
+
+            #books = []
+
+            addBook(book) {
+                this.#books.push(book)
+            }
+
+            addBooks(books) { // On boucle pour incrementer chaque livre
+                for (let book of books) {
+                    this.addBook(book)
+                }
+
+                // OU
+
+                // books.forEach((book) => this.addBook(book))
+
+
+                // OU
+
+                // books.forEach(this.addBook, this)
+
+            }
+
+            findBooksByLetter(letter) {
+                return this.#books.filter((book) => book.title[0].toLowerCase() === letter.toLowerCase())
+            }
+
+        }
+
+        const b = new Book('Seigneur des anneaux', 200);
+        console.log(b.page)
+        b.nextPage()
+        console.log(b.page)
+        b.close()
+        console.log(b.page)
+
+        const l = new Library()
+        l.addBook(b)
+        l.addBooks([
+            new Book('Ready player one', 100),
+            new Book('Oui-oui', 10),
+            new Book('Sillage', 50),
+        ])
+        console.log(l.findBooksByLetter('S'))
+
+    </script>
+</head>
+
+<body>
+    <h1>NE LACHE RIEN !!!</h1>
+</body>
+
+</html>

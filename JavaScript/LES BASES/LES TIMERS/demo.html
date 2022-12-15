@@ -1,0 +1,52 @@
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+
+    <script>
+
+        /*       let i = 0
+              const t = setInterval(() => {
+                  i++
+                  console.log('les gens')
+                  if (i >= 5) {
+                      clearInterval(t)
+                  }
+              }, 1000); */
+
+        function decompte(n) {
+            console.log(3)
+            const d = setInterval(() => {
+                n--
+                console.log(n)
+                if (n === 0) {
+                    clearInterval(d)
+                }
+            }, 1000)
+        }
+
+        decompte(3)
+
+        //  OU
+
+        function decomptes(n) {
+            console.log(n)
+            if (n === 0) {
+                return
+            }
+            setTimeout(() => {
+                decompte(n - 1)
+            }, 1000)
+        }
+
+        decompte(3)
+
+    </script>
+
+</body>
+
+</html>

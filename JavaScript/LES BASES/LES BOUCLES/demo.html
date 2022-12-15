@@ -11,49 +11,93 @@
 
     <script>
 
-        //LA BOUCLE WHILE:
+        //LA BOUCLE WHILE (TANTQUE):
 
         /*La boucle while permet d'exécuter un code tant que la condition passée en paramètre n'est pas satisfaite*/
 
-        while (conditionQueLonVeut) {
+        /* while (conditionQueLonVeut) {
             // ....
-        }
+        } */
 
         /*Il faudra faire attention avec l'utilisation de cette boucle à ce que la condition devienne fausse à un moment donné au risque de voir la boucle se dérouler de manière infinie.
         Si on le souhaite, il existe aussi la boucle until qui permet de faire la même chose sauf que la condition d'arrêt est inversée.*/
 
-        var i = 0
-        while (i < 3) {
-            "Je compte " + i
+        let i = 0
+        while (i < 10) {
+            console.log("Bonjour " + i);
             i = i + 1 // peut aussi s'écrire i++
         }
 
         /*Il est possible de forcer la sortie de la boucle à l'aide du mot clef break*/
 
-        var i = 0
-        while (i < 3) {
+        let p = 0
+        while (p < 3) {
             "Je compte " + i
-            if (i == 1) {
+            if (p == 1) {
                 break
             }
-            i++
+            p++
         }
 
-        //LA BOUCLE FOR:
+        //LA BOUCLE FOR (POUR):
 
         /*La boucle for permet d'exécuter un code un certain nombre de fois en précisant manuellement l'intervalle pour lequel on souhaite faire la boucle. Elle présente une notation plus concise que le while :*/
 
-        var i = 0
-        for (var i = 0; i < 3; i++) {
-            "Je compte " + i
+        for (let m = 0; m < 10; m++) {
+            console.log("Bonjour");
         }
 
         /*Cette boucle s'avèrera très utile lorsqu'il s'agira de parcourir un tableau*/
 
-        var eleves = ['Jean', 'Marc', 'Marie']
-        for (var i = 0; i < eleves.length; i++) {
-            eleve[i] // vaudra alternativement : Jean, Marc, Marie
+        let eleves = ['Jean', 'Marc', 'Marie']
+        for (let i = 0; i < eleves.length; i++) {
+            console.log(eleves[i]);  // vaudra alternativement : Jean, Marc, Marie
         }
+
+        //  FOR IN
+        /*L'instruction for in permet d'itérer sur les éléments énumérables. Elle permettra de récupérer les clefs d'un tableau ou les propriétés d'un objet. */
+
+        const object = { a: 1, b: 2, c: 3 };
+
+        for (const property in object) {
+            console.log(property) // affichera alternativement : a, b, c
+        }
+
+        const Eleves = ['Jean', 'Marc', 'Marie']
+        for (const i in Eleves) {
+            console.log(i) // affichera alternativement : 0, 1, 2
+        }
+
+        // FOR OFF
+        /* L'instruction for of permet de boucler sur un objet itérable en renvoyant les valeurs à chaque itération. */
+
+        const elevesS = ['Jean', 'Marc', 'Marie']
+        for (const eleve of elevesS) {
+            console.log(eleve) // affichera alternativement : Jean, Marc, Marie
+        }
+
+        /* let chiffre = prompt('Entrez un nombre')
+        if (chiffre < 0 || chiffre > 10) {
+            console.log("Le nombre n'est pas entre 0 et 10")
+        } else {
+            for (let i = chiffre; i >= 0; i--) {
+                console.log(i);
+            }
+        } */
+
+        const guess = 8
+        while (true) {
+            const chiffre = prompt('Votre chiffre') * 1
+            if (chiffre < guess) {
+                console.log('Plus')
+            } else if (chiffre > guess) {
+                console.log('Moins')
+            } else {
+                break
+            }
+        }
+        console.log('Bravo ! vous avez deviné')
+
 
     </script>
 </body>
